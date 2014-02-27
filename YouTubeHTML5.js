@@ -634,8 +634,25 @@ function getStreamMap() {
 // Run
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function YoutubePauseIfHidden() {
+    if (document.contains(HTML5_VIDEO)) {
+        this.pause();
+    }
+}
+
+Array.prototype.forEach.call(document.querySelectorAll("video"), function (video) {
+    if (video !== HTML5_VIDEO) {
+        video.addEventListener("timeupdate", YoutubePauseIfHidden, false);
+    }
+});
+
 YOUTUBE_OBSERVER = new MutationObserver(function (mutations) {
     mutations.forEach(function (mutation) {
+        [].forEach.call(mutation.addedNodes, function (node) {
+            if (node !== HTML5_VIDEO && node.tagName && node.tagName === "VIDEO") {
+                node.addEventListener("timeupdate", YoutubePauseIfHidden, false);
+            }
+        });
         [].some.call(mutation.addedNodes, function (node) {
             if (node.id === "progress") {
                 if (document.contains(HTML5_VIDEO)) {
