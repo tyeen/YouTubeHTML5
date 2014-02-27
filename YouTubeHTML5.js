@@ -141,8 +141,8 @@ HTML5_VIDEO.addEventListener("stalled", function () {
 
 HTML5_VIDEO.addEventListener("ended", function () {
     icon(false);
-    var next = document.querySelector("#watch7-playlist-bar-next-button"),
-        auto = document.querySelector("#watch7-playlist-bar-autoplay-button");
+    var next = document.querySelector(".playlist-behavior-controls .next-playlist-list-item"),
+        auto = document.querySelector(".playlist-nav-controls .toggle-autoplay");
     if (next && next.href && auto && auto.classList.contains("yt-uix-button-toggled")) {
         window.location.href = next.href;
     }
