@@ -572,11 +572,15 @@ function parseStreamMap(streamMapHTML) {
         mp4 = HTML5_VIDEO.canPlayType("video/mp4"),
         webm = HTML5_VIDEO.canPlayType("video/webm");
     streamMapHTML.split(",").forEach(function (stream) {
-        var str, tag, url, lab;
+        var str, tag, url, sig, lab;
         try {
             str = decodeURIComponent(stream);
             tag = str.match(/itag=(\d{0,3})/)[1];
             url = str.match(/url=(.*?)(\\u0026|$)/)[1].replace(/^https?:\/\//, "//");
+            sig = str.match(/[sig|s]=([A-Z0-9]*\.[A-Z0-9]*(?:\.[A-Z0-9]*)?)/);
+            if (sig) {
+                throw "protected";
+            }
         } catch (e) {
             return;
         }
