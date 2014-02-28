@@ -572,12 +572,11 @@ function parseStreamMap(streamMapHTML) {
         mp4 = HTML5_VIDEO.canPlayType("video/mp4"),
         webm = HTML5_VIDEO.canPlayType("video/webm");
     streamMapHTML.split(",").forEach(function (stream) {
-        var str, tag, url, sig, lab;
+        var str, tag, url, lab;
         try {
             str = decodeURIComponent(stream);
             tag = str.match(/itag=(\d{0,3})/)[1];
             url = str.match(/url=(.*?)(\\u0026|$)/)[1].replace(/^https?:\/\//, "//");
-            sig = str.match(/[sig|s]=([A-Z0-9]*\.[A-Z0-9]*(?:\.[A-Z0-9]*)?)/)[1];
         } catch (e) {
             return;
         }
@@ -594,13 +593,13 @@ function parseStreamMap(streamMapHTML) {
         default:
             return;
         }
-        if (sig.length !== 81 || !lab) {
+        if (!lab) {
             return;
         }
         streamMap[tag] = {
             "label": lab,
             "itag": tag,
-            "url": decodeURIComponent(url) + "&signature=" + sig
+            "url": decodeURIComponent(url)
         };
     });
     if (Object.keys(streamMap).length === 0) {
