@@ -148,12 +148,14 @@ HTML5_VIDEO.addEventListener("ended", function () {
     }
 });
 
+/*
 HTML5_VIDEO.addEventListener("error", function (e) {
     // this seems to happen if the video is paused for a while
     if (e.target.error.code === e.target.error.MEDIA_ERR_NETWORK) {
         this.load();
     }
 });
+*/
 
 // option.space: document.addEventListener "keydown"
 function videoKeyboardControls(e) {
@@ -579,7 +581,7 @@ function parseStreamMap(streamMapHTML) {
             url = str.match(/url=(.*?)(\\u0026|$)/)[1].replace(/^https?:\/\//, "//");
             sig = str.match(/[sig|s]=([A-Z0-9]*\.[A-Z0-9]*(?:\.[A-Z0-9]*)?)/);
             if (sig) {
-                throw "protected";
+                return;
             }
         } catch (e) {
             return;
