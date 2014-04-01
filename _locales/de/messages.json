@@ -56,6 +56,9 @@
     "option_space": {
         "message": "Play/Pause mit [Umschalt] + [Leertaste]"
     },
+    "option_retry": {
+        "message": "Versuchen Sie, zu spielen, wenn ein Fehler auftritt (zu deaktivieren, wenn das Video ständig neu geladen)"
+    },
     "option_codec": {
         "message": "Bevorzugter Codec"
     },

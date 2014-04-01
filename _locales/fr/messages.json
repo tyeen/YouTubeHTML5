@@ -56,6 +56,9 @@
     "option_space": {
         "message": "Lecture/Pause avec [Maj] + [Espace]"
     },
+    "option_retry": {
+        "message": "Essayez de continuer à jouer en cas d'erreur (désactiver si la vidéo se charge en continu)"
+    },
     "option_codec": {
         "message": "Codec préféré"
     },

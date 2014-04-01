@@ -10,6 +10,7 @@ var YOUTUBE_AJAX          = false,
     YOUTUBE_WATCH         = null,
     STATE_VIDEO_TIME      = 0,
     STATE_VIDEO_RATE      = 1,
+    STATE_VIDEO_RETRY     = false,
     HTML5_PLAYER          = document.createElement("div"),
     HTML5_VIDEO           = document.createElement("video"),
     UI_TOOLBAR            = document.createElement("div"),
@@ -149,7 +150,7 @@ HTML5_VIDEO.addEventListener("ended", function () {
 });
 
 HTML5_VIDEO.addEventListener("error", function (e) {
-    if (HTML5_VIDEO.retry) {
+    if (STATE_VIDEO_RETRY) {
         // this seems to happen if the video is paused for a while
         if (e.target.error.code === e.target.error.MEDIA_ERR_NETWORK) {
             this.load();
@@ -506,7 +507,9 @@ function init(streamMap) {
                 document.removeEventListener("keydown", videoKeyboardControls);
             }
 
-            HTML5_VIDEO.retry = options.retry;
+            if (typeof options.retry === "boolean") {
+                STATE_VIDEO_RETRY = options.retry;
+            }
 
             if (options.audio === true) {
                 if (typeof options.volume === "number") {

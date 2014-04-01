@@ -56,6 +56,9 @@
     "option_space": {
         "message": "Reproducir/Pausa, utilizando [SHIFT]+[SPACE]"
     },
+    "option_retry": {
+        "message": "Trate de seguir jugando si se produce un error (desactivar si el vídeo vuelve a cargar de forma continua)"
+    },
     "option_codec": {
         "message": "Preferencia de codec"
     },

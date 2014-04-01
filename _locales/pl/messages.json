@@ -56,6 +56,9 @@
     "option_space": {
         "message": "Odtwarzaj/Pauza używając [SHIFT] + [SPACJA]"
     },
+    "option_retry": {
+        "message": "Staraj się, aby grać w przypadku wystąpienia błędu (wyłączyć, jeśli film ciągle ponownie ładuje)"
+    },
     "option_codec": {
         "message": "Preferowany kodek"
     },

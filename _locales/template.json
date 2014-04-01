@@ -75,6 +75,10 @@
         "message": "",
         "description": "Play/Pause using [SHIFT] + [SPACE]"
     },
+    "option_retry": {
+        "message": "",
+        "description": "Try to keep playing if an error occurs (disable if the video continuously reloads)"
+    },
     "option_codec": {
         "message": "",
         "description": "Preferred codec"
