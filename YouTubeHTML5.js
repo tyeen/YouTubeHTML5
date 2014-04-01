@@ -148,14 +148,14 @@ HTML5_VIDEO.addEventListener("ended", function () {
     }
 });
 
-/*
 HTML5_VIDEO.addEventListener("error", function (e) {
-    // this seems to happen if the video is paused for a while
-    if (e.target.error.code === e.target.error.MEDIA_ERR_NETWORK) {
-        this.load();
+    if (HTML5_VIDEO.retry) {
+        // this seems to happen if the video is paused for a while
+        if (e.target.error.code === e.target.error.MEDIA_ERR_NETWORK) {
+            this.load();
+        }
     }
 });
-*/
 
 // option.space: document.addEventListener "keydown"
 function videoKeyboardControls(e) {
@@ -505,6 +505,8 @@ function init(streamMap) {
             } else {
                 document.removeEventListener("keydown", videoKeyboardControls);
             }
+
+            HTML5_VIDEO.retry = options.retry;
 
             if (options.audio === true) {
                 if (typeof options.volume === "number") {
