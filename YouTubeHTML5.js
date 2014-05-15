@@ -8,6 +8,7 @@ var YOUTUBE_AJAX          = false,
     YOUTUBE_OBSERVER      = null,
     YOUTUBE_PLAYER        = null,
     YOUTUBE_WATCH         = null,
+    YOUTUBE_PLAYER_CONTAINER = null,
     STATE_VIDEO_TIME      = 0,
     STATE_VIDEO_RATE      = 1,
     STATE_VIDEO_RETRY     = false,
@@ -283,7 +284,7 @@ UI_TOGGLE_CHECKBOX.addEventListener("change", function () {
         if (YOUTUBE_AJAX) {
             location.reload(true);
         }
-        YOUTUBE_WATCH.replaceChild(YOUTUBE_PLAYER, HTML5_PLAYER);
+        YOUTUBE_PLAYER_CONTAINER.replaceChild(YOUTUBE_PLAYER, HTML5_PLAYER);
         document.body.classList.remove("crxhtml5");
         this.checked = false;
         this.title = TEXT_TOGGLE_UNCHECKED;
@@ -291,7 +292,7 @@ UI_TOGGLE_CHECKBOX.addEventListener("change", function () {
         UI_TOGGLE_LABEL.textContent = TEXT_TOGGLE_UNCHECKED;
         icon(false);
     } else {
-        YOUTUBE_WATCH.replaceChild(HTML5_PLAYER, YOUTUBE_PLAYER);
+        YOUTUBE_PLAYER_CONTAINER.replaceChild(HTML5_PLAYER, YOUTUBE_PLAYER);
         document.body.classList.add("crxhtml5");
         this.checked = true;
         this.title = TEXT_TOGGLE_CHECKED;
@@ -439,7 +440,8 @@ function init(streamMap) {
 
         // YouTube elements
         YOUTUBE_PLAYER = document.getElementById("movie_player").parentNode;
-        YOUTUBE_WATCH  = YOUTUBE_PLAYER.parentNode;
+        YOUTUBE_PLAYER_CONTAINER = YOUTUBE_PLAYER.parentNode;
+        YOUTUBE_WATCH  = document.getElementById("player");
 
         if (!YOUTUBE_WATCH) {
             throw new Error("No YouTube video player");
@@ -551,17 +553,18 @@ function init(streamMap) {
                 });
             }
 
+            if (options.embiggen === true) {
+                if (!UI_SIZE_CHECKBOX.checked) {
+                    UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
+                }
+            } else {
+                if (UI_SIZE_CHECKBOX.checked) {
+                    UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
+                }
+            }
+
             if (options.enabled === true) {
                 UI_TOGGLE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
-                if (options.embiggen === true) {
-                    if (!UI_SIZE_CHECKBOX.checked) {
-                        UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
-                    }
-                } else {
-                    if (UI_SIZE_CHECKBOX.checked) {
-                        UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
-                    }
-                }
             }
 
         });
