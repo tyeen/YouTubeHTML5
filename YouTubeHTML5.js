@@ -553,17 +553,18 @@ function init(streamMap) {
                 });
             }
 
+            if (options.embiggen === true) {
+                if (!UI_SIZE_CHECKBOX.checked) {
+                    UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
+                }
+            } else {
+                if (UI_SIZE_CHECKBOX.checked) {
+                    UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
+                }
+            }
+
             if (options.enabled === true) {
                 UI_TOGGLE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
-                if (options.embiggen === true) {
-                    if (!UI_SIZE_CHECKBOX.checked) {
-                        UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
-                    }
-                } else {
-                    if (UI_SIZE_CHECKBOX.checked) {
-                        UI_SIZE_CHECKBOX.dispatchEvent(new MouseEvent("click"));
-                    }
-                }
             }
 
         });
