@@ -121,6 +121,7 @@
 
 /* YouTube */
 
+/*
 body.crxhtml5 #watch7-sidebar {
     margin-top: -360px;
 }
@@ -132,6 +133,7 @@ body.crxhtml5 #watch-appbar-playlist {
 body.crxhtml5 #watch-appbar-playlist .playlist-videos-list {
     max-height: 260px;
 }
+*/
 
 body.crxhtml5 .player-height {
     height: 360px;
